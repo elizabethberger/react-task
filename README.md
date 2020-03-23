@@ -1,2 +1,1 @@
-# react-task
-React task from React the complete guide courde (Udemy)
+React task form "React the complete guide course"
