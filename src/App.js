@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
-import './App.css';
+import UserOutput from './userOutput/userOutput';
+import UserInput from './userInput/userInput';
 
 class App extends Component {
+  state = {
+    users: [
+      { name: 'Max'},
+      { name: 'Jan'},
+      { name: 'Michał'}
+    ],
+  otherState: 'moe value'
+  }
+  switchNameHandler = (newName) =>{
+    this.setState( {
+      users: [
+        { name: newName},
+        { name: 'Alina'},
+        { name: 'Spephanie'}
+      ]
+    })
+  }
+
+  nameChangedHandler = (event) => {
+    this.setState( {
+      users: [
+        { name: 'Max'},
+        { name: event.target.value},
+        { name: 'Spephanie'}
+      ]
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -16,6 +44,11 @@ class App extends Component {
           <li>Ensure that the new input entered by the user overwrites the old username passed to UserOutput</li>
           <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
           <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
+
+          <button onClick={this.switchNameHandler.bind(this, 'Julia')}></button>
+          <UserOutput name={this.state.users[0].name} />
+          <UserInput name={this.state.users[1].name} click={this.switchNameHandler.bind(this, 'hehehehe')} changed={this.nameChangedHandler}/>
+          <UserOutput name={this.state.users[2].name}/>
         </ol>
       </div>
     );
